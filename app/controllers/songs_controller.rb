@@ -25,6 +25,7 @@ class SongsController < ApplicationController
   end
 
   def new
+    redirect_to songs_path, alert: "Not allowed to add songs." if Preference.find_by(allow_create_songs: false)
     @song = Song.new
   end
 

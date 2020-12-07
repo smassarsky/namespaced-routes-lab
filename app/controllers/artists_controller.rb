@@ -8,6 +8,7 @@ class ArtistsController < ApplicationController
   end
 
   def new
+    redirect_to artists_path, alert: "Not allowed to add artists." if Preference.find_by(allow_create_artists: false)
     @artist = Artist.new
   end
 
